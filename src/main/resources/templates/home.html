@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lab 9</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+    </head>
+    <body>
+        
+         <form action="/newpost" method="POST">
+             <br/><b>Tytuł:</b> <input type="text" name="title" size="150"/><br/>
+             <br/><b>Treść:</b>
+             <br/>
+            <textarea name="content" cols="150" rows="5">Treść wpisu..</textarea>
+            
+            <br/><input type="submit" value="Dodaj wpis" />
+        </form>
+        
+        <div th:each="post, zmienna : ${posty}">
+        <form action="/deletepost" method="POST" >
+            <h2 th:text="${post.title}">Tytuł</h2>  
+            <p th:text="${post.content}" >Zawartość</p>
+            <input type="submit" value="USUŃ POST"/>
+            <input name="id" th:value="${post.id}" type="hidden"/> 
+        </form>
+            
+        </div>
+    </body>
+</html>
